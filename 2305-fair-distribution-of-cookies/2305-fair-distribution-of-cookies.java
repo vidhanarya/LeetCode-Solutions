@@ -17,6 +17,7 @@ class Solution {
             dist[j] += cookies[i];
             backtrack(dist, i + 1, cookies);
             dist[j] -= cookies[i];
+            if (dist[j] == 0) break;
         }
     }
 
