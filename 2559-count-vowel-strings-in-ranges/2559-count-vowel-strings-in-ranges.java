@@ -1,6 +1,7 @@
 class Solution {
+    char[] vowels = new char[]{'a', 'e', 'i', 'o', 'u'};
+
     public int[] vowelStrings(String[] words, int[][] queries) {
-        Set<Character> vowels = new HashSet<>(List.of('a', 'e', 'i', 'o', 'u'));
         int[] prefix = new int[words.length+1];
 
         for (int i = 1; i <= words.length; i++) {
@@ -8,7 +9,7 @@ class Solution {
             String word = words[i-1];
 
             prefix[i] = prefix[i-1];
-            prefix[i] += (vowels.contains(word.charAt(0)) && vowels.contains(word.charAt(word.length()-1))) ? 1 : 0;
+            prefix[i] += (isVowel(word.charAt(0)) && isVowel(word.charAt(word.length()-1))) ? 1 : 0;
         }
 
         System.out.println(Arrays.toString(prefix));
@@ -19,5 +20,12 @@ class Solution {
         }
 
         return result;
+    }
+    
+    public boolean isVowel(char c) {
+        for (char v : vowels) {
+            if (c == v) return true;
+        }
+        return false;
     }
 }
