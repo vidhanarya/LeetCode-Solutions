@@ -3,7 +3,7 @@ class Solution {
         Map<Integer, Integer> fullLakes = new HashMap<>();
         TreeSet<Integer> dryDays = new TreeSet<>();
         int[] result = new int[rains.length];
-        Arrays.fill(result, -1);
+        Arrays.fill(result, 1);
 
         for (int i = 0; i < rains.length; i++) {
             if (rains[i] == 0) dryDays.add(i);
@@ -17,10 +17,9 @@ class Solution {
                 result[dryDay] = rains[i];
                 fullLakes.put(rains[i], i);
             }
-        }
-
-        for (int dryDay : dryDays) {
-            result[dryDay] = 1;
+            if (rains[i] > 0) {
+                result[i] = -1;
+            }
         }
         return result;
     }
